@@ -46,8 +46,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    // Set outself as the navigation controller's delegate so we're asked for a transitioning object
     self.navigationController.delegate = self;
 }
 

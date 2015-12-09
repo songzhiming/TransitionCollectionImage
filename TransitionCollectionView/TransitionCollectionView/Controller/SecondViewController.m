@@ -11,7 +11,7 @@
 #import "TransitionFromSecondToFirst.h"
 
 @interface SecondViewController ()<UINavigationControllerDelegate>
-
+@property (nonatomic, strong) UIPercentDrivenInteractiveTransition *interactivePopTransition;
 @end
 
 @implementation SecondViewController
@@ -20,18 +20,19 @@
     [super viewDidLoad];
     self.iconImageView.image = [UIImage imageNamed:self.imageName];
     self.desLabel.text = self.content;
+    
+    
+    //添加手势
+    UIScreenEdgePanGestureRecognizer *popRecognizer = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePopRecognizer:)];
+    popRecognizer.edges = UIRectEdgeLeft;
+    [self.view addGestureRecognizer:popRecognizer];
 }
-
-
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.navigationController.delegate = self;
 }
-
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
-    // Stop being the navigation controller's delegate
     if (self.navigationController.delegate == self) {
         self.navigationController.delegate = nil;
     }
@@ -39,7 +40,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
 
 
 #pragma mark UINavigationControllerDelegate methods
@@ -55,4 +55,40 @@
         return nil;
     }
 }
+
+- (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
+                         interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController {
+    // Check if this is for our custom transition
+    if ([animationController isKindOfClass:[FirstViewController class]]) {
+        return self.interactivePopTransition;
+    }else {
+        return nil;
+    }
+}
+
+#pragma mark PopGesture handlers
+- (void)handlePopRecognizer:(UIScreenEdgePanGestureRecognizer*)recognizer {
+    
+    //translationInView       在指定的坐标系里面移动
+    CGFloat progress = [recognizer translationInView:self.view].x / (self.view.bounds.size.width * 1.0);
+    progress = MIN(1.0, MAX(0.0, progress));
+    NSLog(@"progress====%f",progress);
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        self.interactivePopTransition = [[UIPercentDrivenInteractiveTransition alloc]init];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }else if (recognizer.state == UIGestureRecognizerStateChanged){
+        [self.interactivePopTransition updateInteractiveTransition:progress];
+    }else if (recognizer.state == UIGestureRecognizerStateEnded || recognizer.state == UIGestureRecognizerStateCancelled){
+        if (progress > 0.5) {
+            [self.interactivePopTransition finishInteractiveTransition];
+        }
+        else {
+            [self.interactivePopTransition cancelInteractiveTransition];
+        }
+        self.interactivePopTransition = nil;
+    }
+}
+
+
+
 @end
