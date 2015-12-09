@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SecondViewController">
+            <connections>
+                <outlet property="desLabel" destination="71i-W0-aLb" id="Agf-WH-RDA"/>
+                <outlet property="iconImageView" destination="yKP-Ny-nmu" id="Esk-hW-W6e"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yKP-Ny-nmu">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="128" id="I3d-W7-0zb">
+                            <variation key="heightClass=regular-widthClass=compact" constant="200"/>
+                        </constraint>
+                        <constraint firstAttribute="width" constant="240" id="yaX-vL-aUk">
+                            <variation key="heightClass=regular-widthClass=compact" constant="200"/>
+                        </constraint>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="I3d-W7-0zb"/>
+                            <exclude reference="yaX-vL-aUk"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="I3d-W7-0zb"/>
+                            <include reference="yaX-vL-aUk"/>
+                        </mask>
+                    </variation>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="71i-W0-aLb">
+                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="71i-W0-aLb" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="RO1-H9-9ja"/>
+                <constraint firstItem="71i-W0-aLb" firstAttribute="top" secondItem="yKP-Ny-nmu" secondAttribute="bottom" constant="96" id="Rab-3P-2W9">
+                    <variation key="heightClass=regular-widthClass=compact" constant="20"/>
+                </constraint>
+                <constraint firstItem="71i-W0-aLb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="179" id="chU-hc-0tu"/>
+                <constraint firstItem="71i-W0-aLb" firstAttribute="width" secondItem="yKP-Ny-nmu" secondAttribute="width" id="hPr-W4-yrH"/>
+                <constraint firstItem="yKP-Ny-nmu" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="okM-AI-FBx"/>
+                <constraint firstItem="yKP-Ny-nmu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="190" id="sDJ-Ue-S8f">
+                    <variation key="heightClass=regular-widthClass=compact" constant="100"/>
+                </constraint>
+            </constraints>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="yKP-Ny-nmu"/>
+                    <exclude reference="71i-W0-aLb"/>
+                </mask>
+                <mask key="constraints">
+                    <exclude reference="okM-AI-FBx"/>
+                    <exclude reference="sDJ-Ue-S8f"/>
+                    <exclude reference="RO1-H9-9ja"/>
+                    <exclude reference="Rab-3P-2W9"/>
+                    <exclude reference="chU-hc-0tu"/>
+                    <exclude reference="hPr-W4-yrH"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=compact">
+                <mask key="subviews">
+                    <include reference="yKP-Ny-nmu"/>
+                    <include reference="71i-W0-aLb"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="okM-AI-FBx"/>
+                    <include reference="sDJ-Ue-S8f"/>
+                    <include reference="RO1-H9-9ja"/>
+                    <include reference="Rab-3P-2W9"/>
+                    <exclude reference="chU-hc-0tu"/>
+                    <include reference="hPr-W4-yrH"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+</document>
